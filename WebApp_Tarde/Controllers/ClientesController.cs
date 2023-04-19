@@ -13,13 +13,16 @@ namespace WebApp_Tarde.Controllers
             c1.Telefone = "991340447";
             c1.Nome = "Fernando";
 
-            ClientesViewModel c2 = new ClientesViewModel();
-            c2.Id = 2;
-            c2.Nome = "Joao Garcia";
-            c2.Telefone = "16789432456";
+            for (int i = 0; i < 10; i++)
+            {
+                ClientesViewModel c2 = new ClientesViewModel();
+                c2.Id = i;
+                c2.Nome = "Cliente "+i;
+                c2.Telefone = "Telefone "+i;
 
+                db.Add(c2);
+            }
             db.Add(c1);
-            db.Add(c2);
             return View(db);
         }
 
@@ -28,9 +31,20 @@ namespace WebApp_Tarde.Controllers
             return View();
         }
 
-        public IActionResult teste()
+        [HttpPost]
+        public IActionResult SalvarDados(ClientesViewModel dados)
         {
-            return View();
+            if(dados.Id == 0)
+            {
+                Random rand = new Random();
+                int numeroAleatorio = rand.Next(1, 9999);
+                //gerando Id Aleatório
+                dados.Id = numeroAleatorio;
+                //Adicionando os dados no banco
+                db.Add(dados);
+            }
+            return RedirectToAction("Lista");
         }
+       
     }
 }
