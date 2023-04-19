@@ -20,9 +20,9 @@ namespace WebApp_Tarde.Controllers
                 c2.Nome = "Cliente "+i;
                 c2.Telefone = "Telefone "+i;
 
-                db.Add(c2);
+                //db.Add(c2);
             }
-            db.Add(c1);
+            //db.Add(c1);
             return View(db);
         }
 
@@ -43,7 +43,38 @@ namespace WebApp_Tarde.Controllers
                 //Adicionando os dados no banco
                 db.Add(dados);
             }
+            else
+            {
+                int indice = db.FindIndex(a => a.Id == dados.Id);
+                db[indice] = dados;
+                
+            }
             return RedirectToAction("Lista");
+        }
+
+        public IActionResult Excluir(int id)
+        {
+            ClientesViewModel cliente = db.Find(a => a.Id == id);
+
+            if(cliente != null)
+            {
+                db.Remove(cliente);
+            }
+            return RedirectToAction("Lista");
+        }
+
+        public IActionResult Editar(int id)
+        {
+            ClientesViewModel cliente = db.Find(a => a.Id == id);
+
+            if (cliente != null)
+            {
+                return View(cliente);
+            }
+            else
+            {
+                return RedirectToAction("Lista");
+            }
         }
        
     }
