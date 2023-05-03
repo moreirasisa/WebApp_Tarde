@@ -1,10 +1,21 @@
 ﻿@model WebApp_Tarde.Entidades.PermissaoEntidade
+<div class="row">
+    <div class="col-md-4 offset-md-4">
 
-<form action="/Permissao/SalvarDados" method="post">
-    <label>Descrição</label>
-    <input type="text" name="Descricao" />
-    <br />
-    <button type="submit">
-        Salvar
-    </button>
-</form>
+        <div class="card">
+            <div class="card-header">
+                Cadastro de Permissão
+            </div>
+            <div class="card-body">
+                <form action="/Permissao/SalvarDados" method="post">
+                    <label>Descrição</label>
+                    <input type="text" class="form-control" name="Descricao" />
+                    <br />
+                    <button type="submit">
+                        Salvar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
