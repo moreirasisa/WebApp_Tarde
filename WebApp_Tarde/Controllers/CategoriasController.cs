@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AspNetCore;
+using Microsoft.AspNetCore.Mvc;
 using WebApp_Tarde.Entidades;
 
 namespace WebApp_Tarde.Controllers
@@ -28,6 +29,16 @@ namespace WebApp_Tarde.Controllers
             contexto.SaveChanges();
             return RedirectToAction("Lista");
 
+        }
+
+        public IActionResult Editar()
+        {
+            return View();
+        }
+
+        public IActionResult Excluir()
+        {
+            return RedirectToAction("Lista");
         }
     }
 }
