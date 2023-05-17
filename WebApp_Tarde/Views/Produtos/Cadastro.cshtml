@@ -1,0 +1,22 @@
+﻿@model WebApp_Tarde.Models.NovoProdutoViewModel
+
+<form action="/Produtos/SalvarDados" method="post">
+    <label>Valor</label>
+    <input type="text" name="Valor" />
+    <br />
+
+    <label>Categoria</label>
+    <select name="CategoriaId">
+        @foreach (var categoria in Model.Lista_Categorias)
+        {
+            <option value="@categoria.Id">@categoria.Nome</option>
+        }
+    </select>
+    <br />
+
+    <label>Ativo</label>
+    <select name="Ativo">
+        <option value="true">Ativo</option>
+        <option value="false">Inativo</option>
+    </select>
+</form>
